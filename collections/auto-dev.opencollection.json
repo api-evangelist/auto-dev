@@ -1,0 +1,175 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Auto.dev API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "VIN Decoding",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Decode a VIN",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.auto.dev/vin/:vin",
+            "params": [
+              {
+                "name": "vin",
+                "value": "3GCUDHEL3NG668790",
+                "type": "path",
+                "description": "A valid 17-character VIN."
+              }
+            ]
+          },
+          "docs": "Returns comprehensive vehicle information for any valid 17-character VIN."
+        },
+        {
+          "info": {
+            "name": "Get vehicle specifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.auto.dev/specs/:vin",
+            "params": [
+              {
+                "name": "vin",
+                "value": "3GCUDHEL3NG668790",
+                "type": "path",
+                "description": "A valid 17-character VIN."
+              }
+            ]
+          },
+          "docs": "Returns detailed build specifications and base MSRP / invoice pricing for a vehicle by VIN."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Listings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search vehicle listings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.auto.dev/listings",
+            "params": [
+              {
+                "name": "vehicle.make",
+                "value": "Toyota",
+                "type": "query",
+                "description": "Manufacturer name."
+              },
+              {
+                "name": "vehicle.model",
+                "value": "Camry",
+                "type": "query",
+                "description": "Model name."
+              },
+              {
+                "name": "vehicle.year",
+                "value": "2018-2024",
+                "type": "query",
+                "description": "Model year, supports ranges."
+              },
+              {
+                "name": "retailListing.price",
+                "value": "10000-30000",
+                "type": "query",
+                "description": "Retail price, supports ranges."
+              },
+              {
+                "name": "zip",
+                "value": "94016",
+                "type": "query",
+                "description": "Postal code to center a proximity search."
+              },
+              {
+                "name": "distance",
+                "value": "50",
+                "type": "query",
+                "description": "Search radius in miles."
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "20",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Searches used-car inventory from US physical and online dealers."
+        },
+        {
+          "info": {
+            "name": "Get a single listing by VIN",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.auto.dev/listings/:vin",
+            "params": [
+              {
+                "name": "vin",
+                "value": "3GCUDHEL3NG668790",
+                "type": "path",
+                "description": "A valid 17-character VIN."
+              }
+            ]
+          },
+          "docs": "Returns a single vehicle listing by VIN."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Recalls",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get open recalls for a VIN",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.auto.dev/openrecalls/:vin",
+            "params": [
+              {
+                "name": "vin",
+                "value": "3GCUDHEL3NG668790",
+                "type": "path",
+                "description": "A valid 17-character VIN."
+              }
+            ]
+          },
+          "docs": "Returns active and unresolved NHTSA safety recalls for a vehicle by VIN."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

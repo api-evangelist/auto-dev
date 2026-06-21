@@ -1,0 +1,443 @@
+openapi: 3.0.1
+info:
+  title: Auto.dev API
+  description: >-
+    Automotive data API providing global VIN decoding, used-car vehicle
+    listings with real-time market pricing and dealer data, vehicle
+    specifications, photos, and NHTSA safety recalls. All endpoints are
+    served from https://api.auto.dev and authenticated with an API key,
+    supplied either as a Bearer token in the Authorization header or as an
+    apikey query parameter.
+  termsOfService: https://www.auto.dev/terms
+  contact:
+    name: Auto.dev Support
+    url: https://www.auto.dev
+  version: '2.0'
+servers:
+  - url: https://api.auto.dev
+security:
+  - bearerAuth: []
+  - apiKeyQuery: []
+paths:
+  /vin/{vin}:
+    get:
+      operationId: decodeVin
+      tags:
+        - VIN Decoding
+      summary: Decode a VIN
+      description: >-
+        Returns comprehensive vehicle information for any valid 17-character
+        VIN, including make, model, year, trim, engine, body, drivetrain, and
+        transmission.
+      parameters:
+        - name: vin
+          in: path
+          required: true
+          description: A valid 17-character Vehicle Identification Number.
+          schema:
+            type: string
+            minLength: 17
+            maxLength: 17
+      responses:
+        '200':
+          description: Decoded vehicle information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VinDecodeResponse'
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+  /specs/{vin}:
+    get:
+      operationId: getSpecifications
+      tags:
+        - VIN Decoding
+        - Market Value
+      summary: Get vehicle specifications
+      description: >-
+        Returns detailed build specifications for a vehicle by VIN, including
+        engine, fuel, measurements, drivetrain, warranty, safety, seating, and
+        base MSRP / invoice pricing.
+      parameters:
+        - name: vin
+          in: path
+          required: true
+          schema:
+            type: string
+            minLength: 17
+            maxLength: 17
+      responses:
+        '200':
+          description: Vehicle specifications.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpecsResponse'
+        '401':
+          $ref: '#/components/responses/Error'
+  /listings:
+    get:
+      operationId: searchListings
+      tags:
+        - Listings
+        - Dealers
+      summary: Search vehicle listings
+      description: >-
+        Searches used-car inventory from US physical and online dealers.
+        Supports filtering by vehicle attributes, retail listing attributes,
+        and location, with page- and cursor-based pagination.
+      parameters:
+        - name: vehicle.make
+          in: query
+          schema:
+            type: string
+          description: Manufacturer name.
+        - name: vehicle.model
+          in: query
+          schema:
+            type: string
+          description: Model name.
+        - name: vehicle.year
+          in: query
+          schema:
+            type: string
+          description: Model year, supports ranges such as 2018-2024.
+        - name: retailListing.price
+          in: query
+          schema:
+            type: string
+          description: Retail price, supports ranges such as 10000-30000.
+        - name: retailListing.state
+          in: query
+          schema:
+            type: string
+          description: Two-letter state abbreviation.
+        - name: retailListing.cpo
+          in: query
+          schema:
+            type: boolean
+          description: Certified pre-owned status.
+        - name: zip
+          in: query
+          schema:
+            type: string
+          description: Postal code to center a proximity search.
+        - name: distance
+          in: query
+          schema:
+            type: integer
+            default: 50
+          description: Search radius in miles.
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          description: Results per page; capped by plan (Starter 20, Growth 100, Scale 500).
+        - name: cursor
+          in: query
+          schema:
+            type: string
+          description: Opaque token for deep pagination.
+        - name: sort
+          in: query
+          schema:
+            type: string
+            default: updatedAt.desc
+          description: Sort field and direction, e.g. price.asc or year.desc.
+        - name: select
+          in: query
+          schema:
+            type: string
+          description: Comma-separated field paths to project.
+      responses:
+        '200':
+          description: A paginated collection of listings.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListingsResponse'
+        '401':
+          $ref: '#/components/responses/Error'
+  /listings/{vin}:
+    get:
+      operationId: getListingByVin
+      tags:
+        - Listings
+      summary: Get a single listing by VIN
+      parameters:
+        - name: vin
+          in: path
+          required: true
+          schema:
+            type: string
+            minLength: 17
+            maxLength: 17
+      responses:
+        '200':
+          description: A single vehicle listing.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Listing'
+        '401':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+  /openrecalls/{vin}:
+    get:
+      operationId: getOpenRecalls
+      tags:
+        - Recalls
+      summary: Get open recalls for a VIN
+      description: >-
+        Returns active and unresolved NHTSA safety recalls for a vehicle by
+        VIN, filtering out completed, closed, or resolved campaigns.
+      parameters:
+        - name: vin
+          in: path
+          required: true
+          schema:
+            type: string
+            minLength: 17
+            maxLength: 17
+      responses:
+        '200':
+          description: Open recall data for the vehicle.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenRecallsResponse'
+        '401':
+          $ref: '#/components/responses/Error'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Supply your Auto.dev API key as a Bearer token.
+    apiKeyQuery:
+      type: apiKey
+      in: query
+      name: apikey
+      description: Supply your Auto.dev API key as the apikey query parameter.
+  responses:
+    Error:
+      description: Error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    VinDecodeResponse:
+      type: object
+      properties:
+        vin:
+          type: string
+        vinValid:
+          type: boolean
+        make:
+          type: string
+        model:
+          type: string
+        trim:
+          type: string
+        year:
+          type: integer
+        engine:
+          type: string
+        body:
+          type: string
+        drive:
+          type: string
+        transmission:
+          type: string
+        style:
+          type: string
+        origin:
+          type: string
+        manufacturer:
+          type: string
+        ambiguous:
+          type: boolean
+    SpecsResponse:
+      type: object
+      properties:
+        vehicle:
+          type: object
+          properties:
+            vin:
+              type: string
+            year:
+              type: integer
+            make:
+              type: string
+            model:
+              type: string
+            manufacturer:
+              type: string
+        specs:
+          type: object
+          properties:
+            name:
+              type: string
+            price:
+              type: object
+              properties:
+                baseMsrp:
+                  type: number
+                baseInvoice:
+                  type: number
+            totalSeating:
+              type: integer
+            color:
+              type: object
+              properties:
+                exterior:
+                  type: string
+                interior:
+                  type: string
+            features:
+              type: object
+              description: Engine, fuel, measurements, drivetrain, warranty, safety, and seating features.
+            typeCategories:
+              type: array
+              items:
+                type: string
+            styleAttributes:
+              type: array
+              items:
+                type: string
+    ListingsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Listing'
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+            next:
+              type: string
+            prev:
+              type: string
+            first:
+              type: string
+            last:
+              type: string
+        total:
+          type: integer
+    Listing:
+      type: object
+      properties:
+        vin:
+          type: string
+        year:
+          type: integer
+        make:
+          type: string
+        model:
+          type: string
+        mileage:
+          type: integer
+        location:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        retailListing:
+          type: object
+          properties:
+            price:
+              type: number
+            state:
+              type: string
+            cpo:
+              type: boolean
+        dealer:
+          type: object
+          properties:
+            name:
+              type: string
+            city:
+              type: string
+            state:
+              type: string
+            phone:
+              type: string
+    OpenRecallsResponse:
+      type: object
+      properties:
+        vehicle:
+          type: object
+          properties:
+            modelYear:
+              type: integer
+            make:
+              type: string
+            model:
+              type: string
+        status:
+          type: string
+        openRecalls:
+          type: integer
+        totalRecalls:
+          type: integer
+        recalls:
+          type: array
+          items:
+            $ref: '#/components/schemas/Recall'
+    Recall:
+      type: object
+      properties:
+        manufacturer:
+          type: string
+        nhtsaCampaignNumber:
+          type: string
+        mfrCampaignNumber:
+          type: string
+        remedyAvailable:
+          type: boolean
+        parkIt:
+          type: boolean
+        parkOutSide:
+          type: boolean
+        overTheAirUpdate:
+          type: boolean
+        reportReceivedDate:
+          type: string
+        component:
+          type: string
+        summary:
+          type: string
+        consequence:
+          type: string
+        remedy:
+          type: string
+        notes:
+          type: string
+        recallStatus:
+          type: string
+        expectedRemediationDate:
+          type: string
+    Error:
+      type: object
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+        message:
+          type: string

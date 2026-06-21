@@ -1,0 +1,259 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Auto.dev
+providerId: auto-dev
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: true
+tags:
+- Automotive
+- Vehicle Data
+- VIN Decoding
+- Vehicle Listings
+- Recalls
+- Plans
+description: >-
+  Auto.dev uses tiered monthly plans plus per-call data fees charged on every
+  request. The Starter tier is free with 1,000 included API calls per month and
+  access to VIN Decode, Vehicle Listings, and Vehicle Photos only. Growth and
+  Scale add a monthly base fee, unlimited call volume, higher rate limits, and
+  access to additional products such as Specifications, Recalls, and OEM Build
+  Data. All plans include MCP access. Per-call prices fall as you move up tiers.
+notes: >-
+  Representative per-call rates as published on the Auto.dev pricing page;
+  check auto.dev/pricing for the current full catalog and rates.
+sources:
+- https://www.auto.dev/pricing
+- https://docs.auto.dev/v2/products
+plans:
+- id: auto-dev-starter
+  name: Starter
+  type: free
+  description: >-
+    Free tier with 1,000 included API calls per month, a 5 requests/second
+    rate limit, and access to VIN Decode, Vehicle Listings, and Vehicle Photos.
+  entries:
+  - label: Included API Calls
+    name: included_calls
+    type: included
+    metric: requests
+    limit: 1000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0 (included)
+    userMultiplied: false
+  - label: Global VIN Decode
+    name: vin_decode
+    type: usage
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0.004 per call
+    userMultiplied: false
+  - label: Vehicle Listings
+    name: listings
+    type: usage
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0.002 per call
+    userMultiplied: false
+  - label: Vehicle Photos
+    name: photos
+    type: usage
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0.001 per call
+    userMultiplied: false
+  elements:
+  - name: VIN Decode
+  - name: Vehicle Listings
+  - name: Vehicle Photos
+  - name: MCP Access
+- id: auto-dev-growth
+  name: Growth
+  type: paid
+  description: >-
+    $299/month base plus per-call data fees, unlimited call volume, a 10
+    requests/second rate limit, priority email support, and a 14-day free
+    trial. Adds Specifications, Recalls, Total Cost of Ownership, Payments,
+    Interest Rates, and OEM Build Data.
+  entries:
+  - label: Monthly Base
+    name: base
+    type: flat
+    metric: subscription
+    limit: 1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $299 per month
+    userMultiplied: false
+  - label: Global VIN Decode
+    name: vin_decode
+    type: usage
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0.0025 per call
+    userMultiplied: false
+  - label: Vehicle Listings
+    name: listings
+    type: usage
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0.0015 per call
+    userMultiplied: false
+  - label: Vehicle Photos
+    name: photos
+    type: usage
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0.0009 per call
+    userMultiplied: false
+  - label: Specifications
+    name: specifications
+    type: usage
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0.0015 per call
+    userMultiplied: false
+  - label: Vehicle Recalls
+    name: recalls
+    type: usage
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0.01 per call
+    userMultiplied: false
+  - label: Total Cost of Ownership
+    name: tco
+    type: usage
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0.06 per call
+    userMultiplied: false
+  - label: Vehicle Payments
+    name: payments
+    type: usage
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0.005 per call
+    userMultiplied: false
+  - label: Interest Rates
+    name: interest_rates
+    type: usage
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0.005 per call
+    userMultiplied: false
+  - label: OEM Build Data
+    name: oem_build_data
+    type: usage
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0.10 per call
+    userMultiplied: false
+  elements:
+  - name: VIN Decode
+  - name: Vehicle Listings
+  - name: Vehicle Photos
+  - name: Specifications
+  - name: Vehicle Recalls
+  - name: Total Cost of Ownership
+  - name: Vehicle Payments
+  - name: Interest Rates
+  - name: OEM Build Data
+  - name: MCP Access
+- id: auto-dev-scale
+  name: Scale
+  type: paid
+  description: >-
+    $599/month base plus per-call data fees, unlimited call volume, a 50
+    requests/second rate limit, dedicated email support, and a 14-day free
+    trial. Discounted per-call rates across all products and adds Plate-to-VIN,
+    Open Recalls, and Taxes & Fees.
+  entries:
+  - label: Monthly Base
+    name: base
+    type: flat
+    metric: subscription
+    limit: 1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $599 per month
+    userMultiplied: false
+  - label: Plate-to-VIN
+    name: plate_to_vin
+    type: usage
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0.055 per call
+    userMultiplied: false
+  - label: Open Recalls
+    name: open_recalls
+    type: usage
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0.06 per call
+    userMultiplied: false
+  - label: Taxes & Fees
+    name: taxes_fees
+    type: usage
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0.005 per call
+    userMultiplied: false
+  elements:
+  - name: All Growth Products (discounted)
+  - name: Plate-to-VIN
+  - name: Open Recalls
+  - name: Taxes & Fees
+  - name: MCP Access
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

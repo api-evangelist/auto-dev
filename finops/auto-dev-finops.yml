@@ -1,0 +1,119 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Auto.dev
+providerId: auto-dev
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: true
+tags:
+- Automotive
+- Vehicle Data
+- VIN Decoding
+- Vehicle Listings
+- Recalls
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Auto.dev spend. Auto.dev bills a monthly plan base fee
+  (Starter $0, Growth $299, Scale $599) plus per-call data fees charged on
+  every request, with per-call rates that vary by product and decline at
+  higher tiers. The Starter plan includes 1,000 calls/month; Growth and
+  Scale are uncapped. Cost is driven primarily by request volume per product.
+notes: >-
+  Per-call rates are subject to change; verify against the Auto.dev pricing
+  page during reconciliation.
+sources:
+- https://www.auto.dev/pricing
+- https://docs.auto.dev/v2/products
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Auto.dev
+serviceCategory: Web and Data
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+  - Adjustment
+focusColumns:
+  ServiceName: Auto.dev API
+  ServiceCategory: Web and Data
+  ProviderName: Auto.dev
+  PublisherName: Auto.dev
+  InvoiceIssuerName: Auto.dev
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Usage-Based
+meters:
+- name: plan_base_fee
+  description: Monthly subscription base fee for the selected plan (Growth $299, Scale $599).
+  unit: months
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+- name: vin_decode_calls
+  description: VIN decode requests, billed per call (rate varies by plan).
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+- name: listings_calls
+  description: Vehicle listings search and lookup requests, billed per call.
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+- name: photos_calls
+  description: Vehicle photos requests, billed per call.
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+- name: specifications_calls
+  description: Specifications requests, billed per call.
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+- name: recalls_calls
+  description: Vehicle recalls and open recalls requests, billed per call.
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+  - product
+- name: premium_product_calls
+  description: Premium product requests (OEM Build Data, Total Cost of Ownership, Plate-to-VIN, Payments, Interest Rates, Taxes & Fees), billed per call.
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+  - product
+principles:
+- name: Visibility
+  description: Track per-product call counts; high-cost products (OEM Build Data, TCO, Open Recalls, Plate-to-VIN) dominate per-call spend.
+- name: Allocation
+  description: Tag API keys per workload/team and map per-product call volume to internal cost centers.
+- name: Optimization
+  description: Cache stable VIN decode and specifications responses; right-size the plan so the base fee plus per-call rate minimizes total cost at your volume; avoid premium products where listings/specs data suffices.
+- name: Accountability
+  description: Assign owners per project/key and review monthly base plus per-call spend against budget.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,128 @@
+aid: auto-dev
+url: https://raw.githubusercontent.com/api-evangelist/auto-dev/refs/heads/main/apis.yml
+name: Auto.dev
+kind: company
+description: Auto.dev provides automotive data APIs for developers and AI agents,
+  including global VIN decoding, used-car vehicle listings with real-time market
+  pricing and dealer data, vehicle specifications, photos, and NHTSA safety recalls.
+  The REST API is served from https://api.auto.dev with API key authentication.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Automotive
+- Vehicle Data
+- VIN Decoding
+- Vehicle Listings
+- Recalls
+created: '2026-06-21'
+modified: '2026-06-21'
+specificationVersion: '0.19'
+apis:
+- aid: auto-dev:vin-decoding
+  name: Auto.dev VIN Decoding API
+  tags:
+  - VIN Decoding
+  - Vehicle Data
+  - Specifications
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.auto.dev/v2/products/vin-decode
+  baseURL: https://api.auto.dev
+  properties:
+  - url: https://docs.auto.dev/v2/products/vin-decode
+    type: Documentation
+  - url: https://docs.auto.dev/v2/products/vin-decode
+    type: APIReference
+  - url: openapi/auto-dev-openapi.yml
+    type: OpenAPI
+  description: Decodes any valid 17-character VIN into make, model, year, trim,
+    engine, body, drivetrain, and transmission. Also exposes a specifications
+    endpoint returning detailed build features and base MSRP/invoice pricing.
+- aid: auto-dev:listings-search
+  name: Auto.dev Listings / Search API
+  tags:
+  - Vehicle Listings
+  - Used Cars
+  - Search
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.auto.dev/v2/products/vehicle-listings
+  baseURL: https://api.auto.dev
+  properties:
+  - url: https://docs.auto.dev/v2/products/vehicle-listings
+    type: Documentation
+  - url: https://docs.auto.dev/v2/products/vehicle-listings
+    type: APIReference
+  - url: openapi/auto-dev-openapi.yml
+    type: OpenAPI
+  description: Searches used-car inventory from US physical and online dealers,
+    filterable by make, model, year, price, location, and CPO status, with
+    cursor and page-based pagination, plus single-listing lookup by VIN.
+- aid: auto-dev:market-value-pricing
+  name: Auto.dev Market Value / Pricing API
+  tags:
+  - Market Value
+  - Pricing
+  - Vehicle Photos
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.auto.dev/v2/products
+  baseURL: https://api.auto.dev
+  properties:
+  - url: https://docs.auto.dev/v2/products
+    type: Documentation
+  - url: openapi/auto-dev-openapi.yml
+    type: OpenAPI
+  description: Surfaces real-time retail pricing on listings and base MSRP /
+    invoice pricing on the specifications endpoint, alongside a vehicle photos
+    endpoint returning image galleries for inventory and listings.
+- aid: auto-dev:dealers
+  name: Auto.dev Dealers API
+  tags:
+  - Dealers
+  - Inventory
+  - Location
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.auto.dev/v2/products/vehicle-listings
+  baseURL: https://api.auto.dev
+  properties:
+  - url: https://docs.auto.dev/v2/products/vehicle-listings
+    type: Documentation
+  - url: openapi/auto-dev-openapi.yml
+    type: OpenAPI
+  description: Returns dealer information embedded in vehicle listings, including
+    dealer name, location, and contact data resolved by zip-code and distance
+    filters for proximity-based inventory discovery.
+- aid: auto-dev:recalls
+  name: Auto.dev Recalls API
+  tags:
+  - Recalls
+  - Safety
+  - NHTSA
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.auto.dev/v2/products/open-recalls
+  baseURL: https://api.auto.dev
+  properties:
+  - url: https://docs.auto.dev/v2/products/open-recalls
+    type: Documentation
+  - url: https://docs.auto.dev/v2/products/open-recalls
+    type: APIReference
+  - url: openapi/auto-dev-openapi.yml
+    type: OpenAPI
+  description: Returns NHTSA safety recall data by VIN. The open-recalls endpoint
+    filters to only active and unresolved recalls requiring attention, with
+    campaign numbers, components, consequences, and remedy status.
+common:
+- type: GitHubOrganization
+  url: https://github.com/drivly
+- type: LinkedIn
+  url: https://www.linkedin.com/company/auto-dev
+- type: Website
+  url: https://www.auto.dev
+- type: Documentation
+  url: https://docs.auto.dev
+- type: Plans
+  url: plans/auto-dev-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/auto-dev-rate-limits.yml
+- type: FinOps
+  url: finops/auto-dev-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

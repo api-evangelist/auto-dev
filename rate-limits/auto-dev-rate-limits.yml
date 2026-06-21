@@ -1,0 +1,69 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Auto.dev
+providerId: auto-dev
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: true
+tags:
+- Automotive
+- Vehicle Data
+- VIN Decoding
+- Vehicle Listings
+- Recalls
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  Auto.dev enforces a per-second request rate limit that scales with the
+  account plan: Starter is limited to 5 requests/second, Growth to 10
+  requests/second, and Scale to 50 requests/second. The Starter tier also
+  caps included usage at 1,000 API calls per month, after which access is
+  limited; Growth and Scale have no cap on call volume. The listings
+  endpoint additionally caps results per page by plan (Starter 20, Growth
+  100, Scale 500).
+notes: >-
+  Verify current per-second limits and the Starter monthly call cap on the
+  Auto.dev pricing page during reconciliation; limits change as accounts
+  move between tiers.
+sources:
+- https://www.auto.dev/pricing
+- https://docs.auto.dev/v2/products
+- https://docs.auto.dev/v2/products/vehicle-listings
+responseCodes:
+  throttled: 429
+limits:
+- name: Starter Requests Per Second
+  scope: account
+  metric: requests
+  limit: 5 per second
+  notes: Free Starter plan.
+- name: Growth Requests Per Second
+  scope: account
+  metric: requests
+  limit: 10 per second
+  notes: Growth plan.
+- name: Scale Requests Per Second
+  scope: account
+  metric: requests
+  limit: 50 per second
+  notes: Scale plan.
+- name: Starter Monthly Call Cap
+  scope: account
+  metric: requests
+  limit: 1000 per month
+  notes: Included free calls on the Starter plan; Growth and Scale are uncapped.
+- name: Listings Page Size
+  scope: request
+  metric: results
+  limit: Starter 20 / Growth 100 / Scale 500
+  notes: Maximum results per page on the listings endpoint, capped by plan.
+policies:
+- name: Tiered Limits
+  description: Per-second limits and listing page sizes raise as accounts move from Starter to Growth to Scale.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on HTTP 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,258 @@
+{
+  "item": [
+    {
+      "name": "VIN Decoding",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "name": "Decode a VIN",
+          "request": {
+            "name": "Decode a VIN",
+            "description": {
+              "content": "Returns comprehensive vehicle information for any valid 17-character VIN.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vin",
+                ":vin"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "vin",
+                  "value": "3GCUDHEL3NG668790",
+                  "description": "A valid 17-character VIN."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "name": "Get vehicle specifications",
+          "request": {
+            "name": "Get vehicle specifications",
+            "description": {
+              "content": "Returns detailed build specifications and base MSRP / invoice pricing for a vehicle by VIN.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "specs",
+                ":vin"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "vin",
+                  "value": "3GCUDHEL3NG668790"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Listings",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "name": "Search vehicle listings",
+          "request": {
+            "name": "Search vehicle listings",
+            "description": {
+              "content": "Searches used-car inventory from US physical and online dealers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "listings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "vehicle.make",
+                  "value": "Toyota"
+                },
+                {
+                  "key": "vehicle.model",
+                  "value": "Camry"
+                },
+                {
+                  "key": "vehicle.year",
+                  "value": "2018-2024"
+                },
+                {
+                  "key": "retailListing.price",
+                  "value": "10000-30000"
+                },
+                {
+                  "key": "zip",
+                  "value": "94016"
+                },
+                {
+                  "key": "distance",
+                  "value": "50"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "name": "Get a single listing by VIN",
+          "request": {
+            "name": "Get a single listing by VIN",
+            "description": {
+              "content": "Returns a single vehicle listing by VIN.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "listings",
+                ":vin"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "vin",
+                  "value": "3GCUDHEL3NG668790"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Recalls",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "name": "Get open recalls for a VIN",
+          "request": {
+            "name": "Get open recalls for a VIN",
+            "description": {
+              "content": "Returns active and unresolved NHTSA safety recalls for a vehicle by VIN.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openrecalls",
+                ":vin"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "vin",
+                  "value": "3GCUDHEL3NG668790"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.auto.dev",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "name": "Auto.dev API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Automotive data API providing global VIN decoding, used-car vehicle listings with real-time market pricing and dealer data, vehicle specifications, photos, and NHTSA safety recalls.\n\nContact Support:\n Name: Auto.dev Support\n URL: https://www.auto.dev",
+      "type": "text/plain"
+    }
+  }
+}

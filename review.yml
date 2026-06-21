@@ -1,0 +1,66 @@
+aid: auto-dev
+name: Auto.dev
+review:
+  question: Does Auto.dev expose a documented public WebSocket or streaming API?
+  answer: false
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was created. Auto.dev publishes only synchronous
+    request/response REST endpoints under https://api.auto.dev. No WebSocket,
+    Server-Sent Events (SSE), or webhook surface is documented, so there is no
+    event-driven or streaming transport to model.
+findings:
+  summary: |
+    Auto.dev does not publish a documented public WebSocket or streaming API.
+    The platform exposes only synchronous REST (HTTPS) endpoints under
+    https://api.auto.dev, authenticated with an API key supplied either as a
+    Bearer token in the Authorization header or as an apikey query parameter.
+    All documented products - VIN decode, specifications, vehicle listings,
+    vehicle photos, and recalls - are simple GET request/response calls. No
+    realtime, bidirectional, push, or webhook transport is documented.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.auto.dev
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in the Auto.dev API reference as of the review date.
+    - protocol: SSE
+      scheme: https
+      documented: false
+      note: No Server-Sent Events streaming surface is documented.
+    - protocol: Webhooks
+      scheme: https
+      documented: false
+      note: No outbound webhook / event-subscription surface is documented.
+  endpointsConfirmedRest:
+    - GET https://api.auto.dev/vin/{vin}
+    - GET https://api.auto.dev/specs/{vin}
+    - GET https://api.auto.dev/listings
+    - GET https://api.auto.dev/listings/{vin}
+    - GET https://api.auto.dev/openrecalls/{vin}
+sources:
+  - url: https://docs.auto.dev/v2/products
+    type: Documentation
+    note: Product overview lists REST base URL https://api.auto.dev; no WebSocket, SSE, or webhook mentioned.
+  - url: https://docs.auto.dev/v2/products/vin-decode
+    type: APIReference
+    note: VIN decode is a synchronous GET request/response endpoint.
+  - url: https://docs.auto.dev/v2/products/vehicle-listings
+    type: APIReference
+    note: Listings search and lookup are synchronous GET endpoints with page/cursor pagination.
+  - url: https://docs.auto.dev/v2/products/open-recalls
+    type: APIReference
+    note: Open recalls is a synchronous GET request/response endpoint.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket, SSE, or webhook protocol surface exists, so no AsyncAPI
+    document was authored. The apis.yml catalogs the documented REST products
+    only, with the OpenAPI 3.0.1 specification describing the synchronous
+    HTTPS endpoints.
