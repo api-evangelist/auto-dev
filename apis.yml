@@ -109,6 +109,10 @@ apis:
     filters to only active and unresolved recalls requiring attention, with
     campaign numbers, components, consequences, and remedy status.
 common:
+- type: DomainSecurity
+  url: security/auto-dev-domain-security.yml
+- type: Authentication
+  url: authentication/auto-dev-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/drivly
 - type: LinkedIn
@@ -123,6 +127,8 @@ common:
   url: rate-limits/auto-dev-rate-limits.yml
 - type: FinOps
   url: finops/auto-dev-finops.yml
+- type: Blog
+  url: https://www.auto.dev/blog/rss.xml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

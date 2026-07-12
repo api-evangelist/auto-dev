@@ -1,0 +1,23 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/auto-dev-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - query
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: Supply your Auto.dev API key as a Bearer token.
+  sources:
+  - openapi/auto-dev-openapi.yml
+- name: apiKeyQuery
+  type: apiKey
+  in: query
+  parameter: apikey
+  description: Supply your Auto.dev API key as the apikey query parameter.
+  sources:
+  - openapi/auto-dev-openapi.yml
