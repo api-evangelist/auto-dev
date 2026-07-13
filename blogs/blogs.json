@@ -1,0 +1,13 @@
+{
+  "repo": "auto-dev",
+  "feeds": [
+    {
+      "source": "https://www.auto.dev/blog",
+      "feed_url": "https://www.auto.dev/blog/rss.xml",
+      "title": "Auto.dev Blog",
+      "saved": 0
+    }
+  ],
+  "fetched": "2026-07-11T11:43:46Z",
+  "post_count": 4
+}
