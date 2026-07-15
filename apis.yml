@@ -109,6 +109,8 @@ apis:
     filters to only active and unresolved recalls requiring attention, with
     campaign numbers, components, consequences, and remedy status.
 common:
+- type: AgenticAccess
+  url: agentic-access/auto-dev-agentic-access.yml
 - type: DomainSecurity
   url: security/auto-dev-domain-security.yml
 - type: Authentication
