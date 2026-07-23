@@ -1,0 +1,124 @@
+openapi: 3.0.1
+info:
+  title: Auto.dev Dealers Recalls API
+  description: Automotive data API providing global VIN decoding, used-car vehicle listings with real-time market pricing and dealer data, vehicle specifications, photos, and NHTSA safety recalls. All endpoints are served from https://api.auto.dev and authenticated with an API key, supplied either as a Bearer token in the Authorization header or as an apikey query parameter.
+  termsOfService: https://www.auto.dev/terms
+  contact:
+    name: Auto.dev Support
+    url: https://www.auto.dev
+  version: '2.0'
+servers:
+- url: https://api.auto.dev
+security:
+- bearerAuth: []
+- apiKeyQuery: []
+tags:
+- name: Recalls
+paths:
+  /openrecalls/{vin}:
+    get:
+      operationId: getOpenRecalls
+      tags:
+      - Recalls
+      summary: Get open recalls for a VIN
+      description: Returns active and unresolved NHTSA safety recalls for a vehicle by VIN, filtering out completed, closed, or resolved campaigns.
+      parameters:
+      - name: vin
+        in: path
+        required: true
+        schema:
+          type: string
+          minLength: 17
+          maxLength: 17
+      responses:
+        '200':
+          description: Open recall data for the vehicle.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenRecallsResponse'
+        '401':
+          $ref: '#/components/responses/Error'
+components:
+  schemas:
+    Recall:
+      type: object
+      properties:
+        manufacturer:
+          type: string
+        nhtsaCampaignNumber:
+          type: string
+        mfrCampaignNumber:
+          type: string
+        remedyAvailable:
+          type: boolean
+        parkIt:
+          type: boolean
+        parkOutSide:
+          type: boolean
+        overTheAirUpdate:
+          type: boolean
+        reportReceivedDate:
+          type: string
+        component:
+          type: string
+        summary:
+          type: string
+        consequence:
+          type: string
+        remedy:
+          type: string
+        notes:
+          type: string
+        recallStatus:
+          type: string
+        expectedRemediationDate:
+          type: string
+    OpenRecallsResponse:
+      type: object
+      properties:
+        vehicle:
+          type: object
+          properties:
+            modelYear:
+              type: integer
+            make:
+              type: string
+            model:
+              type: string
+        status:
+          type: string
+        openRecalls:
+          type: integer
+        totalRecalls:
+          type: integer
+        recalls:
+          type: array
+          items:
+            $ref: '#/components/schemas/Recall'
+    Error:
+      type: object
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+        message:
+          type: string
+  responses:
+    Error:
+      description: Error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Supply your Auto.dev API key as a Bearer token.
+    apiKeyQuery:
+      type: apiKey
+      in: query
+      name: apikey
+      description: Supply your Auto.dev API key as the apikey query parameter.

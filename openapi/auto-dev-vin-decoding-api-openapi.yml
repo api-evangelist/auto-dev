@@ -1,0 +1,175 @@
+openapi: 3.0.1
+info:
+  title: Auto.dev Dealers VIN Decoding API
+  description: Automotive data API providing global VIN decoding, used-car vehicle listings with real-time market pricing and dealer data, vehicle specifications, photos, and NHTSA safety recalls. All endpoints are served from https://api.auto.dev and authenticated with an API key, supplied either as a Bearer token in the Authorization header or as an apikey query parameter.
+  termsOfService: https://www.auto.dev/terms
+  contact:
+    name: Auto.dev Support
+    url: https://www.auto.dev
+  version: '2.0'
+servers:
+- url: https://api.auto.dev
+security:
+- bearerAuth: []
+- apiKeyQuery: []
+tags:
+- name: VIN Decoding
+paths:
+  /vin/{vin}:
+    get:
+      operationId: decodeVin
+      tags:
+      - VIN Decoding
+      summary: Decode a VIN
+      description: Returns comprehensive vehicle information for any valid 17-character VIN, including make, model, year, trim, engine, body, drivetrain, and transmission.
+      parameters:
+      - name: vin
+        in: path
+        required: true
+        description: A valid 17-character Vehicle Identification Number.
+        schema:
+          type: string
+          minLength: 17
+          maxLength: 17
+      responses:
+        '200':
+          description: Decoded vehicle information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VinDecodeResponse'
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+  /specs/{vin}:
+    get:
+      operationId: getSpecifications
+      tags:
+      - VIN Decoding
+      summary: Get vehicle specifications
+      description: Returns detailed build specifications for a vehicle by VIN, including engine, fuel, measurements, drivetrain, warranty, safety, seating, and base MSRP / invoice pricing.
+      parameters:
+      - name: vin
+        in: path
+        required: true
+        schema:
+          type: string
+          minLength: 17
+          maxLength: 17
+      responses:
+        '200':
+          description: Vehicle specifications.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpecsResponse'
+        '401':
+          $ref: '#/components/responses/Error'
+components:
+  schemas:
+    SpecsResponse:
+      type: object
+      properties:
+        vehicle:
+          type: object
+          properties:
+            vin:
+              type: string
+            year:
+              type: integer
+            make:
+              type: string
+            model:
+              type: string
+            manufacturer:
+              type: string
+        specs:
+          type: object
+          properties:
+            name:
+              type: string
+            price:
+              type: object
+              properties:
+                baseMsrp:
+                  type: number
+                baseInvoice:
+                  type: number
+            totalSeating:
+              type: integer
+            color:
+              type: object
+              properties:
+                exterior:
+                  type: string
+                interior:
+                  type: string
+            features:
+              type: object
+              description: Engine, fuel, measurements, drivetrain, warranty, safety, and seating features.
+            typeCategories:
+              type: array
+              items:
+                type: string
+            styleAttributes:
+              type: array
+              items:
+                type: string
+    VinDecodeResponse:
+      type: object
+      properties:
+        vin:
+          type: string
+        vinValid:
+          type: boolean
+        make:
+          type: string
+        model:
+          type: string
+        trim:
+          type: string
+        year:
+          type: integer
+        engine:
+          type: string
+        body:
+          type: string
+        drive:
+          type: string
+        transmission:
+          type: string
+        style:
+          type: string
+        origin:
+          type: string
+        manufacturer:
+          type: string
+        ambiguous:
+          type: boolean
+    Error:
+      type: object
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+        message:
+          type: string
+  responses:
+    Error:
+      description: Error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Supply your Auto.dev API key as a Bearer token.
+    apiKeyQuery:
+      type: apiKey
+      in: query
+      name: apikey
+      description: Supply your Auto.dev API key as the apikey query parameter.

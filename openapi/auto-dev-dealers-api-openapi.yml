@@ -1,0 +1,192 @@
+openapi: 3.0.1
+info:
+  title: Auto.dev Dealers API
+  description: Automotive data API providing global VIN decoding, used-car vehicle listings with real-time market pricing and dealer data, vehicle specifications, photos, and NHTSA safety recalls. All endpoints are served from https://api.auto.dev and authenticated with an API key, supplied either as a Bearer token in the Authorization header or as an apikey query parameter.
+  termsOfService: https://www.auto.dev/terms
+  contact:
+    name: Auto.dev Support
+    url: https://www.auto.dev
+  version: '2.0'
+servers:
+- url: https://api.auto.dev
+security:
+- bearerAuth: []
+- apiKeyQuery: []
+tags:
+- name: Dealers
+paths:
+  /listings:
+    get:
+      operationId: searchListings
+      tags:
+      - Dealers
+      summary: Search vehicle listings
+      description: Searches used-car inventory from US physical and online dealers. Supports filtering by vehicle attributes, retail listing attributes, and location, with page- and cursor-based pagination.
+      parameters:
+      - name: vehicle.make
+        in: query
+        schema:
+          type: string
+        description: Manufacturer name.
+      - name: vehicle.model
+        in: query
+        schema:
+          type: string
+        description: Model name.
+      - name: vehicle.year
+        in: query
+        schema:
+          type: string
+        description: Model year, supports ranges such as 2018-2024.
+      - name: retailListing.price
+        in: query
+        schema:
+          type: string
+        description: Retail price, supports ranges such as 10000-30000.
+      - name: retailListing.state
+        in: query
+        schema:
+          type: string
+        description: Two-letter state abbreviation.
+      - name: retailListing.cpo
+        in: query
+        schema:
+          type: boolean
+        description: Certified pre-owned status.
+      - name: zip
+        in: query
+        schema:
+          type: string
+        description: Postal code to center a proximity search.
+      - name: distance
+        in: query
+        schema:
+          type: integer
+          default: 50
+        description: Search radius in miles.
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: limit
+        in: query
+        schema:
+          type: integer
+        description: Results per page; capped by plan (Starter 20, Growth 100, Scale 500).
+      - name: cursor
+        in: query
+        schema:
+          type: string
+        description: Opaque token for deep pagination.
+      - name: sort
+        in: query
+        schema:
+          type: string
+          default: updatedAt.desc
+        description: Sort field and direction, e.g. price.asc or year.desc.
+      - name: select
+        in: query
+        schema:
+          type: string
+        description: Comma-separated field paths to project.
+      responses:
+        '200':
+          description: A paginated collection of listings.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListingsResponse'
+        '401':
+          $ref: '#/components/responses/Error'
+components:
+  schemas:
+    Listing:
+      type: object
+      properties:
+        vin:
+          type: string
+        year:
+          type: integer
+        make:
+          type: string
+        model:
+          type: string
+        mileage:
+          type: integer
+        location:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        retailListing:
+          type: object
+          properties:
+            price:
+              type: number
+            state:
+              type: string
+            cpo:
+              type: boolean
+        dealer:
+          type: object
+          properties:
+            name:
+              type: string
+            city:
+              type: string
+            state:
+              type: string
+            phone:
+              type: string
+    ListingsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Listing'
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+            next:
+              type: string
+            prev:
+              type: string
+            first:
+              type: string
+            last:
+              type: string
+        total:
+          type: integer
+    Error:
+      type: object
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+        message:
+          type: string
+  responses:
+    Error:
+      description: Error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Supply your Auto.dev API key as a Bearer token.
+    apiKeyQuery:
+      type: apiKey
+      in: query
+      name: apikey
+      description: Supply your Auto.dev API key as the apikey query parameter.
