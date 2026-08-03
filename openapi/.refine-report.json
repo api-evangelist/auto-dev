@@ -1,0 +1,22 @@
+{
+  "provider": "auto-dev",
+  "sources": [
+    "auto-dev-dealers-api-openapi.yml",
+    "auto-dev-listings-api-openapi.yml",
+    "auto-dev-market-value-api-openapi.yml",
+    "auto-dev-recalls-api-openapi.yml",
+    "auto-dev-vin-decoding-api-openapi.yml"
+  ],
+  "outputs": [
+    "auto-dev-dealers-api-openapi.yml",
+    "auto-dev-listings-api-openapi.yml",
+    "auto-dev-market-value-api-openapi.yml",
+    "auto-dev-recalls-api-openapi.yml",
+    "auto-dev-vin-decoding-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
