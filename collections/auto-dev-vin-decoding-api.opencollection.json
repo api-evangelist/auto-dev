@@ -1,0 +1,61 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Auto.dev Dealers VIN Decoding API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "VIN Decoding",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Decode a VIN",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.auto.dev/vin/:vin",
+            "params": [
+              {
+                "name": "vin",
+                "value": "",
+                "type": "path",
+                "description": "A valid 17-character Vehicle Identification Number."
+              }
+            ]
+          },
+          "docs": "Returns comprehensive vehicle information for any valid 17-character VIN, including make, model, year, trim, engine, body, drivetrain, and transmission."
+        },
+        {
+          "info": {
+            "name": "Get vehicle specifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.auto.dev/specs/:vin",
+            "params": [
+              {
+                "name": "vin",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns detailed build specifications for a vehicle by VIN, including engine, fuel, measurements, drivetrain, warranty, safety, seating, and base MSRP / invoice pricing."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

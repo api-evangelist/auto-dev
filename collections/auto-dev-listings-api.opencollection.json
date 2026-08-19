@@ -1,0 +1,132 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Auto.dev Dealers Listings API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Listings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search vehicle listings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.auto.dev/listings",
+            "params": [
+              {
+                "name": "vehicle.make",
+                "value": "",
+                "type": "query",
+                "description": "Manufacturer name."
+              },
+              {
+                "name": "vehicle.model",
+                "value": "",
+                "type": "query",
+                "description": "Model name."
+              },
+              {
+                "name": "vehicle.year",
+                "value": "",
+                "type": "query",
+                "description": "Model year, supports ranges such as 2018-2024."
+              },
+              {
+                "name": "retailListing.price",
+                "value": "",
+                "type": "query",
+                "description": "Retail price, supports ranges such as 10000-30000."
+              },
+              {
+                "name": "retailListing.state",
+                "value": "",
+                "type": "query",
+                "description": "Two-letter state abbreviation."
+              },
+              {
+                "name": "retailListing.cpo",
+                "value": "",
+                "type": "query",
+                "description": "Certified pre-owned status."
+              },
+              {
+                "name": "zip",
+                "value": "",
+                "type": "query",
+                "description": "Postal code to center a proximity search."
+              },
+              {
+                "name": "distance",
+                "value": "",
+                "type": "query",
+                "description": "Search radius in miles."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Results per page; capped by plan (Starter 20, Growth 100, Scale 500)."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Opaque token for deep pagination."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort field and direction, e.g. price.asc or year.desc."
+              },
+              {
+                "name": "select",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated field paths to project."
+              }
+            ]
+          },
+          "docs": "Searches used-car inventory from US physical and online dealers. Supports filtering by vehicle attributes, retail listing attributes, and location, with page- and cursor-based pagination."
+        },
+        {
+          "info": {
+            "name": "Get a single listing by VIN",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.auto.dev/listings/:vin",
+            "params": [
+              {
+                "name": "vin",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a single listing by VIN"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

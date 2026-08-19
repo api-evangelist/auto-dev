@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Auto.dev Dealers Recalls API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Recalls",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get open recalls for a VIN",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.auto.dev/openrecalls/:vin",
+            "params": [
+              {
+                "name": "vin",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns active and unresolved NHTSA safety recalls for a vehicle by VIN, filtering out completed, closed, or resolved campaigns."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

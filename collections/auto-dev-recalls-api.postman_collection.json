@@ -1,0 +1,189 @@
+{
+  "item": [
+    {
+      "id": "e8795e0e-e1ed-4bba-8690-733e232c66d3",
+      "name": "Recalls",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d5ff7b3f-eba6-4bc8-ba43-a144a64bda6a",
+          "name": "Get open recalls for a VIN",
+          "request": {
+            "name": "Get open recalls for a VIN",
+            "description": {
+              "content": "Returns active and unresolved NHTSA safety recalls for a vehicle by VIN, filtering out completed, closed, or resolved campaigns.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openrecalls",
+                ":vin"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vin",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0f0efec8-791f-4397-a2bd-d84ebaa8f25b",
+              "name": "Open recall data for the vehicle.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openrecalls",
+                    ":vin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vin",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vehicle\": {\n    \"modelYear\": 3546,\n    \"make\": \"string\",\n    \"model\": \"string\"\n  },\n  \"status\": \"string\",\n  \"openRecalls\": 7388,\n  \"totalRecalls\": 2497,\n  \"recalls\": [\n    {\n      \"manufacturer\": \"string\",\n      \"nhtsaCampaignNumber\": \"string\",\n      \"mfrCampaignNumber\": \"string\",\n      \"remedyAvailable\": false,\n      \"parkIt\": true,\n      \"parkOutSide\": true,\n      \"overTheAirUpdate\": false,\n      \"reportReceivedDate\": \"string\",\n      \"component\": \"string\",\n      \"summary\": \"string\",\n      \"consequence\": \"string\",\n      \"remedy\": \"string\",\n      \"notes\": \"string\",\n      \"recallStatus\": \"string\",\n      \"expectedRemediationDate\": \"string\"\n    },\n    {\n      \"manufacturer\": \"string\",\n      \"nhtsaCampaignNumber\": \"string\",\n      \"mfrCampaignNumber\": \"string\",\n      \"remedyAvailable\": true,\n      \"parkIt\": true,\n      \"parkOutSide\": false,\n      \"overTheAirUpdate\": false,\n      \"reportReceivedDate\": \"string\",\n      \"component\": \"string\",\n      \"summary\": \"string\",\n      \"consequence\": \"string\",\n      \"remedy\": \"string\",\n      \"notes\": \"string\",\n      \"recallStatus\": \"string\",\n      \"expectedRemediationDate\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "96756a62-c947-4a9c-a248-ffacb4fb0b7c",
+              "name": "Error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openrecalls",
+                    ":vin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vin",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 2931,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.auto.dev",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f092385a-4a61-4825-a74f-9adc061c5bff",
+    "name": "Auto.dev Dealers Recalls API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Automotive data API providing global VIN decoding, used-car vehicle listings with real-time market pricing and dealer data, vehicle specifications, photos, and NHTSA safety recalls. All endpoints are served from https://api.auto.dev and authenticated with an API key, supplied either as a Bearer token in the Authorization header or as an apikey query parameter.\n\nContact Support:\n Name: Auto.dev Support",
+      "type": "text/plain"
+    }
+  }
+}

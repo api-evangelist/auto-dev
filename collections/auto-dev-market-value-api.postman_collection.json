@@ -1,0 +1,189 @@
+{
+  "item": [
+    {
+      "id": "801633c8-e96e-4d75-8347-3a9cea3f366a",
+      "name": "Market Value",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1a4a58dc-4ba9-4d9b-a276-749e2d6eb9f9",
+          "name": "Get vehicle specifications",
+          "request": {
+            "name": "Get vehicle specifications",
+            "description": {
+              "content": "Returns detailed build specifications for a vehicle by VIN, including engine, fuel, measurements, drivetrain, warranty, safety, seating, and base MSRP / invoice pricing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "specs",
+                ":vin"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vin",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2939a383-6d7a-4cc0-8438-94bb2fd38515",
+              "name": "Vehicle specifications.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "specs",
+                    ":vin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vin",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vehicle\": {\n    \"vin\": \"string\",\n    \"year\": 2907,\n    \"make\": \"string\",\n    \"model\": \"string\",\n    \"manufacturer\": \"string\"\n  },\n  \"specs\": {\n    \"name\": \"string\",\n    \"price\": {\n      \"baseMsrp\": 2411.289833002005,\n      \"baseInvoice\": 6431.495615264155\n    },\n    \"totalSeating\": 5884,\n    \"color\": {\n      \"exterior\": \"string\",\n      \"interior\": \"string\"\n    },\n    \"features\": {},\n    \"typeCategories\": [\n      \"string\",\n      \"string\"\n    ],\n    \"styleAttributes\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac61af80-5437-4c81-809d-8f88e407832a",
+              "name": "Error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "specs",
+                    ":vin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vin",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 7425,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.auto.dev",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8adce983-ef69-4e37-8927-b410793e31bb",
+    "name": "Auto.dev Dealers Market Value API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Automotive data API providing global VIN decoding, used-car vehicle listings with real-time market pricing and dealer data, vehicle specifications, photos, and NHTSA safety recalls. All endpoints are served from https://api.auto.dev and authenticated with an API key, supplied either as a Bearer token in the Authorization header or as an apikey query parameter.\n\nContact Support:\n Name: Auto.dev Support",
+      "type": "text/plain"
+    }
+  }
+}

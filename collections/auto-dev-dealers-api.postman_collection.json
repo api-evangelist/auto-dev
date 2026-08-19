@@ -1,0 +1,346 @@
+{
+  "item": [
+    {
+      "id": "82a3d5ea-c0db-49bc-9032-c537e8c1aad8",
+      "name": "Dealers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e05d73b2-023e-45e0-a1ae-b85abd8986ae",
+          "name": "Search vehicle listings",
+          "request": {
+            "name": "Search vehicle listings",
+            "description": {
+              "content": "Searches used-car inventory from US physical and online dealers. Supports filtering by vehicle attributes, retail listing attributes, and location, with page- and cursor-based pagination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "listings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "vehicle.make",
+                  "value": "<string>",
+                  "description": "Manufacturer name."
+                },
+                {
+                  "disabled": false,
+                  "key": "vehicle.model",
+                  "value": "<string>",
+                  "description": "Model name."
+                },
+                {
+                  "disabled": false,
+                  "key": "vehicle.year",
+                  "value": "<string>",
+                  "description": "Model year, supports ranges such as 2018-2024."
+                },
+                {
+                  "disabled": false,
+                  "key": "retailListing.price",
+                  "value": "<string>",
+                  "description": "Retail price, supports ranges such as 10000-30000."
+                },
+                {
+                  "disabled": false,
+                  "key": "retailListing.state",
+                  "value": "<string>",
+                  "description": "Two-letter state abbreviation."
+                },
+                {
+                  "disabled": false,
+                  "key": "retailListing.cpo",
+                  "value": "<boolean>",
+                  "description": "Certified pre-owned status."
+                },
+                {
+                  "disabled": false,
+                  "key": "zip",
+                  "value": "<string>",
+                  "description": "Postal code to center a proximity search."
+                },
+                {
+                  "disabled": false,
+                  "key": "distance",
+                  "value": "50",
+                  "description": "Search radius in miles."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Results per page; capped by plan (Starter 20, Growth 100, Scale 500)."
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Opaque token for deep pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "updatedAt.desc",
+                  "description": "Sort field and direction, e.g. price.asc or year.desc."
+                },
+                {
+                  "disabled": false,
+                  "key": "select",
+                  "value": "<string>",
+                  "description": "Comma-separated field paths to project."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "14e48e36-d99f-4f37-8605-b2050bd815f9",
+              "name": "A paginated collection of listings.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "vehicle.make",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vehicle.model",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vehicle.year",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "retailListing.price",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "retailListing.state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "retailListing.cpo",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "zip",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "distance",
+                      "value": "50"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "updatedAt.desc"
+                    },
+                    {
+                      "key": "select",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"vin\": \"string\",\n      \"year\": 9190,\n      \"make\": \"string\",\n      \"model\": \"string\",\n      \"mileage\": 5893,\n      \"location\": \"string\",\n      \"createdAt\": \"1993-10-05T07:20:26.041Z\",\n      \"updatedAt\": \"1959-07-11T11:43:23.570Z\",\n      \"retailListing\": {\n        \"price\": 3905.932022572157,\n        \"state\": \"string\",\n        \"cpo\": true\n      },\n      \"dealer\": {\n        \"name\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"phone\": \"string\"\n      }\n    },\n    {\n      \"vin\": \"string\",\n      \"year\": 2032,\n      \"make\": \"string\",\n      \"model\": \"string\",\n      \"mileage\": 6071,\n      \"location\": \"string\",\n      \"createdAt\": \"1949-06-29T12:14:31.111Z\",\n      \"updatedAt\": \"1970-01-28T08:41:01.494Z\",\n      \"retailListing\": {\n        \"price\": 1571.3789189356885,\n        \"state\": \"string\",\n        \"cpo\": true\n      },\n      \"dealer\": {\n        \"name\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"phone\": \"string\"\n      }\n    }\n  ],\n  \"links\": {\n    \"self\": \"string\",\n    \"next\": \"string\",\n    \"prev\": \"string\",\n    \"first\": \"string\",\n    \"last\": \"string\"\n  },\n  \"total\": 3411\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee0f21b1-5a7c-4082-b7b3-a79d3dd35b26",
+              "name": "Error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "vehicle.make",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vehicle.model",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vehicle.year",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "retailListing.price",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "retailListing.state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "retailListing.cpo",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "zip",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "distance",
+                      "value": "50"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "updatedAt.desc"
+                    },
+                    {
+                      "key": "select",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 8051,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.auto.dev",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "34d67ca1-7811-4d07-bbcc-b75380c85f0f",
+    "name": "Auto.dev Dealers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Automotive data API providing global VIN decoding, used-car vehicle listings with real-time market pricing and dealer data, vehicle specifications, photos, and NHTSA safety recalls. All endpoints are served from https://api.auto.dev and authenticated with an API key, supplied either as a Bearer token in the Authorization header or as an apikey query parameter.\n\nContact Support:\n Name: Auto.dev Support",
+      "type": "text/plain"
+    }
+  }
+}
