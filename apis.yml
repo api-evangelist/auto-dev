@@ -6,6 +6,18 @@ description: Auto.dev provides automotive data APIs for developers and AI agents
   including global VIN decoding, used-car vehicle listings with real-time market
   pricing and dealer data, vehicle specifications, photos, and NHTSA safety recalls.
   The REST API is served from https://api.auto.dev with API key authentication.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
