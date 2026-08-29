@@ -163,6 +163,9 @@ apis:
   - type: APIReference
     url: https://docs.auto.dev/v2/products/open-recalls
 common:
+- type: CapabilityMap
+  url: capabilities/auto-dev-capability-edges.yml
+  name: Auto.dev Business Capability Map
 - type: AgenticAccess
   url: agentic-access/auto-dev-agentic-access.yml
 - type: DomainSecurity
