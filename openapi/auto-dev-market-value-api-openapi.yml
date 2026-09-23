@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Auto.dev Dealers Market Value API
+  title: Auto.dev Market Value API
   description: Automotive data API providing global VIN decoding, used-car vehicle listings with real-time market pricing and dealer data, vehicle specifications, photos, and NHTSA safety recalls. All endpoints are served from https://api.auto.dev and authenticated with an API key, supplied either as a Bearer token in the Authorization header or as an apikey query parameter.
   termsOfService: https://www.auto.dev/terms
   contact:
@@ -41,6 +41,15 @@ paths:
           $ref: '#/components/responses/Error'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+        message:
+          type: string
     SpecsResponse:
       type: object
       properties:
@@ -89,15 +98,6 @@ components:
               type: array
               items:
                 type: string
-    Error:
-      type: object
-      properties:
-        status:
-          type: integer
-        error:
-          type: string
-        message:
-          type: string
   responses:
     Error:
       description: Error response.
