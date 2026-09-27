@@ -68,15 +68,37 @@ paths:
           $ref: '#/components/responses/Error'
 components:
   schemas:
-    Error:
+    VinDecodeResponse:
       type: object
       properties:
-        status:
+        vin:
+          type: string
+        vinValid:
+          type: boolean
+        make:
+          type: string
+        model:
+          type: string
+        trim:
+          type: string
+        year:
           type: integer
-        error:
+        engine:
           type: string
-        message:
+        body:
           type: string
+        drive:
+          type: string
+        transmission:
+          type: string
+        style:
+          type: string
+        origin:
+          type: string
+        manufacturer:
+          type: string
+        ambiguous:
+          type: boolean
     SpecsResponse:
       type: object
       properties:
@@ -125,37 +147,15 @@ components:
               type: array
               items:
                 type: string
-    VinDecodeResponse:
+    Error:
       type: object
       properties:
-        vin:
-          type: string
-        vinValid:
-          type: boolean
-        make:
-          type: string
-        model:
-          type: string
-        trim:
-          type: string
-        year:
+        status:
           type: integer
-        engine:
+        error:
           type: string
-        body:
+        message:
           type: string
-        drive:
-          type: string
-        transmission:
-          type: string
-        style:
-          type: string
-        origin:
-          type: string
-        manufacturer:
-          type: string
-        ambiguous:
-          type: boolean
   responses:
     Error:
       description: Error response.

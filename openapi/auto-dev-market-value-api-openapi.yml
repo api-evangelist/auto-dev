@@ -40,16 +40,14 @@ paths:
         '401':
           $ref: '#/components/responses/Error'
 components:
-  schemas:
+  responses:
     Error:
-      type: object
-      properties:
-        status:
-          type: integer
-        error:
-          type: string
-        message:
-          type: string
+      description: Error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
     SpecsResponse:
       type: object
       properties:
@@ -98,13 +96,15 @@ components:
               type: array
               items:
                 type: string
-  responses:
     Error:
-      description: Error response.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+      type: object
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+        message:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http

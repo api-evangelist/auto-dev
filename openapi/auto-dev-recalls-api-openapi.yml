@@ -40,38 +40,14 @@ paths:
         '401':
           $ref: '#/components/responses/Error'
 components:
-  schemas:
+  responses:
     Error:
-      type: object
-      properties:
-        status:
-          type: integer
-        error:
-          type: string
-        message:
-          type: string
-    OpenRecallsResponse:
-      type: object
-      properties:
-        vehicle:
-          type: object
-          properties:
-            modelYear:
-              type: integer
-            make:
-              type: string
-            model:
-              type: string
-        status:
-          type: string
-        openRecalls:
-          type: integer
-        totalRecalls:
-          type: integer
-        recalls:
-          type: array
-          items:
-            $ref: '#/components/schemas/Recall'
+      description: Error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
     Recall:
       type: object
       properties:
@@ -105,13 +81,37 @@ components:
           type: string
         expectedRemediationDate:
           type: string
-  responses:
     Error:
-      description: Error response.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+      type: object
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+        message:
+          type: string
+    OpenRecallsResponse:
+      type: object
+      properties:
+        vehicle:
+          type: object
+          properties:
+            modelYear:
+              type: integer
+            make:
+              type: string
+            model:
+              type: string
+        status:
+          type: string
+        openRecalls:
+          type: integer
+        totalRecalls:
+          type: integer
+        recalls:
+          type: array
+          items:
+            $ref: '#/components/schemas/Recall'
   securitySchemes:
     bearerAuth:
       type: http
