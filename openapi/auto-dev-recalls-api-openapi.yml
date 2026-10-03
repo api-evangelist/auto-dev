@@ -40,14 +40,16 @@ paths:
         '401':
           $ref: '#/components/responses/Error'
 components:
-  responses:
-    Error:
-      description: Error response.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+        message:
+          type: string
     Recall:
       type: object
       properties:
@@ -81,15 +83,6 @@ components:
           type: string
         expectedRemediationDate:
           type: string
-    Error:
-      type: object
-      properties:
-        status:
-          type: integer
-        error:
-          type: string
-        message:
-          type: string
     OpenRecallsResponse:
       type: object
       properties:
@@ -112,6 +105,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Recall'
+  responses:
+    Error:
+      description: Error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

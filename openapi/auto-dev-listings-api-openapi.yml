@@ -126,6 +126,15 @@ paths:
           $ref: '#/components/responses/Error'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+        message:
+          type: string
     ListingsResponse:
       type: object
       properties:
@@ -189,15 +198,6 @@ components:
               type: string
             phone:
               type: string
-    Error:
-      type: object
-      properties:
-        status:
-          type: integer
-        error:
-          type: string
-        message:
-          type: string
   responses:
     Error:
       description: Error response.
