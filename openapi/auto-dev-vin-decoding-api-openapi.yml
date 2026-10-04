@@ -67,6 +67,13 @@ paths:
         '401':
           $ref: '#/components/responses/Error'
 components:
+  responses:
+    Error:
+      description: Error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     Error:
       type: object
@@ -156,13 +163,6 @@ components:
           type: string
         ambiguous:
           type: boolean
-  responses:
-    Error:
-      description: Error response.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

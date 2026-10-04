@@ -100,38 +100,14 @@ paths:
         '401':
           $ref: '#/components/responses/Error'
 components:
-  schemas:
+  responses:
     Error:
-      type: object
-      properties:
-        status:
-          type: integer
-        error:
-          type: string
-        message:
-          type: string
-    ListingsResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Listing'
-        links:
-          type: object
-          properties:
-            self:
-              type: string
-            next:
-              type: string
-            prev:
-              type: string
-            first:
-              type: string
-            last:
-              type: string
-        total:
-          type: integer
+      description: Error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
     Listing:
       type: object
       properties:
@@ -173,13 +149,37 @@ components:
               type: string
             phone:
               type: string
-  responses:
     Error:
-      description: Error response.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+      type: object
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+        message:
+          type: string
+    ListingsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Listing'
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+            next:
+              type: string
+            prev:
+              type: string
+            first:
+              type: string
+            last:
+              type: string
+        total:
+          type: integer
   securitySchemes:
     bearerAuth:
       type: http
