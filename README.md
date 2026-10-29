@@ -1,4 +1,4 @@
-# Auto.dev (auto-dev)
+# Auto.dev
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,137 +66,132 @@
 
 Auto.dev provides automotive data APIs for developers and AI agents, including global VIN decoding, used-car vehicle listings with real-time market pricing and dealer data, vehicle specifications, photos, and NHTSA safety recalls. The REST API is served from https://api.auto.dev with API key authentication.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/auto-dev/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/auto-dev/refs/heads/main/apis.yml)
+**Areas:** Automotive · Vehicle Data · VIN Decoding · Vehicle Listings · Recalls
 
-## Tags
+## Auto.dev on APIs.io
 
-- Automotive
-- Vehicle Data
-- VIN Decoding
-- Vehicle Listings
-- Recalls
+Everything profiled for Auto.dev is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/auto-dev/](https://apis.io/providers/auto-dev/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (5)
 
-- **Created:** 2026-06-21
-- **Modified:** 2026-06-21
+- [Auto.dev Dealers API](https://apis.io/apis/auto-dev/auto-dev-dealers-api/) — The Dealers API from Auto.dev — 1 operation(s) for dealers.
+- [Auto.dev Listings API](https://apis.io/apis/auto-dev/auto-dev-listings-api/) — The Listings API from Auto.dev — 2 operation(s) for listings.
+- [Auto.dev Market Value API](https://apis.io/apis/auto-dev/auto-dev-market-value-api/) — The Market Value API from Auto.dev — 1 operation(s) for market value.
+- [Auto.dev Recalls API](https://apis.io/apis/auto-dev/auto-dev-recalls-api/) — The Recalls API from Auto.dev — 1 operation(s) for recalls.
+- [Auto.dev VIN Decoding API](https://apis.io/apis/auto-dev/auto-dev-vin-decoding-api/) — The VIN Decoding API from Auto.dev — 2 operation(s) for vin decoding.
 
-## APIs
+### Published properties
 
-### Auto.dev VIN Decoding API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Decodes any valid 17-character VIN into make, model, year, trim, engine, body, drivetrain, and transmission. Also exposes a specifications endpoint returning detailed build features and base MSRP/invoice pricing.
+#### MCP servers (1)
 
-- **Human URL:** [https://docs.auto.dev/v2/products/vin-decode](https://docs.auto.dev/v2/products/vin-decode)
-- **Base URL:** `https://api.auto.dev`
+Model Context Protocol servers that expose the API to agents.
 
-#### Tags
+- [auto-dev](https://apis.io/servers/auto-dev/auto-dev/)
 
-- VIN Decoding
-- Vehicle Data
-- Specifications
+#### Agentic access (1)
 
-#### Properties
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- [Documentation](https://docs.auto.dev/v2/products/vin-decode)
-- [API Reference](https://docs.auto.dev/v2/products/vin-decode)
-- [OpenAPI](openapi/auto-dev-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/auto-dev.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/auto-dev.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Auto Dev Agentic Access](https://apis.io/agentic-access/auto-dev/auto-dev-agentic-access/)
 
-### Auto.dev Listings / Search API
+#### Collections (6)
 
-Searches used-car inventory from US physical and online dealers, filterable by make, model, year, price, location, and CPO status, with cursor and page-based pagination, plus single-listing lookup by VIN.
+Postman and Open Collection request collections.
 
-- **Human URL:** [https://docs.auto.dev/v2/products/vehicle-listings](https://docs.auto.dev/v2/products/vehicle-listings)
-- **Base URL:** `https://api.auto.dev`
+- [Auto.dev API](https://apis.io/collections/auto-dev/open-auto-dev/)
+- [Auto.dev Dealers API](https://apis.io/collections/auto-dev/open-auto-dev-dealers-api/)
+- [Auto.dev Dealers Listings API](https://apis.io/collections/auto-dev/open-auto-dev-listings-api/)
+- [Auto.dev Dealers Market Value API](https://apis.io/collections/auto-dev/open-auto-dev-market-value-api/)
+- [Auto.dev Dealers Recalls API](https://apis.io/collections/auto-dev/open-auto-dev-recalls-api/)
+- [Auto.dev Dealers VIN Decoding API](https://apis.io/collections/auto-dev/open-auto-dev-vin-decoding-api/)
 
-#### Tags
+#### Security (2)
 
-- Vehicle Listings
-- Used Cars
-- Search
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Properties
+- [Auto Dev Authentication](https://apis.io/security/auto-dev/auto-dev-authentication/)
+- [Auto Dev Domain Security](https://apis.io/security/auto-dev/auto-dev-domain-security/)
 
-- [Documentation](https://docs.auto.dev/v2/products/vehicle-listings)
-- [API Reference](https://docs.auto.dev/v2/products/vehicle-listings)
-- [OpenAPI](openapi/auto-dev-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/auto-dev.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/auto-dev.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Plans and pricing (1)
 
-### Auto.dev Market Value / Pricing API
+Published plans, tiers and prices.
 
-Surfaces real-time retail pricing on listings and base MSRP / invoice pricing on the specifications endpoint, alongside a vehicle photos endpoint returning image galleries for inventory and listings.
+- [Auto Dev Plans Pricing](https://apis.io/plans/auto-dev/auto-dev-plans-pricing/)
 
-- **Human URL:** [https://docs.auto.dev/v2/products](https://docs.auto.dev/v2/products)
-- **Base URL:** `https://api.auto.dev`
+#### Rate limits (1)
 
-#### Tags
+Published request limits.
 
-- Market Value
-- Pricing
-- Vehicle Photos
+- [Auto Dev Rate Limits](https://apis.io/rate-limits/auto-dev/auto-dev-rate-limits/)
 
-#### Properties
+#### FinOps (1)
 
-- [Documentation](https://docs.auto.dev/v2/products)
-- [OpenAPI](openapi/auto-dev-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/auto-dev.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/auto-dev.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+What the API costs to run, by operation.
 
-### Auto.dev Dealers API
+- [Auto Dev Finops](https://apis.io/finops/auto-dev/auto-dev-finops/)
 
-Returns dealer information embedded in vehicle listings, including dealer name, location, and contact data resolved by zip-code and distance filters for proximity-based inventory discovery.
+## Where to find this API
 
-- **Human URL:** [https://docs.auto.dev/v2/products/vehicle-listings](https://docs.auto.dev/v2/products/vehicle-listings)
-- **Base URL:** `https://api.auto.dev`
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-#### Tags
-
-- Dealers
-- Inventory
-- Location
-
-#### Properties
-
-- [Documentation](https://docs.auto.dev/v2/products/vehicle-listings)
-- [OpenAPI](openapi/auto-dev-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/auto-dev.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/auto-dev.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Auto.dev Recalls API
-
-Returns NHTSA safety recall data by VIN. The open-recalls endpoint filters to only active and unresolved recalls requiring attention, with campaign numbers, components, consequences, and remedy status.
-
-- **Human URL:** [https://docs.auto.dev/v2/products/open-recalls](https://docs.auto.dev/v2/products/open-recalls)
-- **Base URL:** `https://api.auto.dev`
-
-#### Tags
-
-- Recalls
-- Safety
-- NHTSA
-
-#### Properties
-
-- [Documentation](https://docs.auto.dev/v2/products/open-recalls)
-- [API Reference](https://docs.auto.dev/v2/products/open-recalls)
-- [OpenAPI](openapi/auto-dev-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/auto-dev.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/auto-dev.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/drivly)
-- [LinkedIn](https://www.linkedin.com/company/auto-dev)
 - [Website](https://www.auto.dev)
 - [Documentation](https://docs.auto.dev)
-- [Plans](plans/auto-dev-plans-pricing.yml)
-- [Rate Limits](rate-limits/auto-dev-rate-limits.yml)
-- [Fin Ops](finops/auto-dev-finops.yml)
+- [Blog](https://www.auto.dev/blog/rss.xml)
+- [GitHub](https://github.com/drivly)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 27.4** — thin · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 68.3 |
+| Contract quality | 47.6 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 31.0 |
+| Access clarity | 7.9 |
+
+**Agent readiness 52.6** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | na |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | paginated |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 11.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/auto-dev/](https://apis.io/providers/auto-dev/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Auto.dev: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/auto-dev/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
